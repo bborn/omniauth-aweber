@@ -1,16 +1,28 @@
-require 'omniauth/strategies/oauth'
+require 'omniauth-oauth2'
+require 'multi_json'
+
 
 module OmniAuth
   module Strategies
-    class Aweber < OmniAuth::Strategies::OAuth
+    class Aweber < OmniAuth::Strategies::OAuth2
+
       option :name, 'aweber'
+      option :scope, 'account.read email.read list.read'
       option :client_options, {
-          site:               'https://auth.aweber.com/1.0',
-          request_token_path: '/oauth/request_token',
-          authorize_path:     '/oauth/authorize',
-          access_token_path:  '/oauth/access_token',
-          scheme: :query_string
+        :authorize_url => 'https://auth.aweber.com/oauth2/authorize',
+        :token_url => 'https://auth.aweber.com/oauth2/token'
       }
+
+      def callback_url
+        full_host + script_name + callback_path
+      end
+
+      # credentials do
+      #   hash = {"token" => access_token.token}
+      #   hash["refresh_token"] = access_token.refresh_token
+      #   hash["expires"] = true
+      #   hash
+      # end      
 
       uid { raw_info['id'] }
 
@@ -31,4 +43,4 @@ module OmniAuth
   end
 end
 
-OmniAuth.config.add_camelization 'aweber', 'Aweber'
+# OmniAuth.config.add_camelization 'aweber', 'Aweber'

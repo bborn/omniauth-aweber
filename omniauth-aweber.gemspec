@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "omniauth-aweber"
   spec.version       = Omniauth::Aweber::VERSION
   spec.authors       = ["Dustin Ward"]
-  spec.email         = ["dustin.w@boxcar21.com"]
-  spec.description   = 'Omniauth strategy for Aweber'
-  spec.summary       = 'Omniauth strategy for Aweber'
+  spec.email         = ["bruno@influencekit.com"]
+  spec.description   = 'Omniauth strategy for Aweber (OAuth 2.0)'
+  spec.summary       = 'Omniauth strategy for Aweber (OAuth 2.0)'
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
